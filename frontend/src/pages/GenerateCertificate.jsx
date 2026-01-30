@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './GenerateCertificate.css';
+import './styles.css';
 
 function GenerateCertificate() {
   const [templates, setTemplates] = useState([]);

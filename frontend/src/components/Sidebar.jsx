@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import "./styles.css";
 
 export default function Sidebar() {
   const [darkTheme, setDarkTheme] = useState(false);
@@ -18,13 +17,9 @@ export default function Sidebar() {
 
   return (
     <aside
-      className="col-12 col-md-3 col-lg-2 d-flex flex-column p-3 border-end"
-      style={{
-        backgroundColor: "var(--bg-sidebar)",
-        borderColor: "var(--border-color)"
-      }}
+      className="col-12 col-md-3 col-lg-2 d-flex flex-column p-3 border-end sidebar"
     >
-      <h4 className="text-center mb-4">AutoCert</h4>
+      <h4 className="text-center mb-4 branding">AutoCert</h4>
 
       <ul className="nav nav-pills flex-column gap-2 mb-auto text-center">
         <li className="nav-item">
@@ -32,9 +27,6 @@ export default function Sidebar() {
             to="/generate-certificate"
             className={({ isActive }) =>
               isActive || window.location.pathname === "/" ? "nav-link active" : "nav-link text-reset"
-            }
-            style={({ isActive }) =>
-              isActive || window.location.pathname === "/" ? { backgroundColor: "var(--hover-bg)" } : undefined
             }
           >
             Generate Certificate
