@@ -29,26 +29,12 @@ export default function Sidebar() {
       <ul className="nav nav-pills flex-column gap-2 mb-auto text-center">
         <li className="nav-item">
           <NavLink
-            to="/create-template"
-            className={({ isActive }) =>
-              `nav-link ${isActive ? "active" : "text-reset"}`
-            }
-            style={({ isActive }) =>
-              isActive ? { backgroundColor: "var(--hover-bg)" } : undefined
-            }
-          >
-            Create Template
-          </NavLink>
-        </li>
-
-        <li className="nav-item">
-          <NavLink
             to="/generate-certificate"
             className={({ isActive }) =>
-              `nav-link ${isActive ? "active" : "text-reset"}`
+              isActive || window.location.pathname === "/" ? "nav-link active" : "nav-link text-reset"
             }
             style={({ isActive }) =>
-              isActive ? { backgroundColor: "var(--hover-bg)" } : undefined
+              isActive || window.location.pathname === "/" ? { backgroundColor: "var(--hover-bg)" } : undefined
             }
           >
             Generate Certificate
