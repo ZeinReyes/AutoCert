@@ -75,9 +75,10 @@ body {
 .generate-certificate-container {
   padding: 22px;
   background: var(--bg-main);
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 .page-header {
@@ -100,7 +101,7 @@ body {
   grid-template-columns: .75fr 1fr;
   gap: 24px;
   flex: 1;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .section-card {
@@ -134,6 +135,7 @@ body {
 .templates-grid {
   display: grid;
   gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
 .template-card {
@@ -148,6 +150,17 @@ body {
   gap: 12px;
   background: var(--bg-card);
   color: var(--text-main);
+}
+
+.template-card .template-info {
+  min-width: 0;
+}
+
+.template-card .template-info h6,
+.template-card .template-info small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .template-card:hover {
@@ -266,5 +279,109 @@ select:focus {
   }
   .templates-section {
     max-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .generate-certificate-container {
+    padding: 14px;
+  }
+
+  .section-card {
+    padding: 16px;
+  }
+
+  .page-header h2 {
+    font-size: 20px;
+  }
+
+  .templates-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .template-preview {
+    width: 72px;
+    height: 54px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .form-control,
+  input,
+  textarea,
+  select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header h2 {
+    font-size: 18px;
+  }
+
+  .template-card {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .template-info h6 {
+    font-size: 13px;
+  }
+
+  .template-preview {
+    width: 64px;
+    height: 48px;
+  }
+
+  .branding {
+    font-size: 18px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+  }
+}
+
+.mobile-header {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-header {
+    display: flex;
+    background: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .mobile-hamburger {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .sidebar.collapsed {
+    display: none !important;
+  }
+
+  /* When sidebar is visible on mobile, make it appear above content */
+  .sidebar {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    border-right: none;
+  }
+
+  /* Slight spacing/typography tweaks for mobile */
+  .generate-certificate-container {
+    padding-top: 12px;
+  }
+
+  .section-card {
+    padding: 12px;
   }
 }
