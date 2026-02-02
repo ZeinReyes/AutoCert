@@ -6,7 +6,7 @@ function MainPage() {
     <div className="container-fluid" style={{ height: '100vh', overflow: 'hidden' }}>
       <div className="row" style={{ height: '100%' }}>
         <Sidebar />
-        <main className="col p-4 main-content" style={{ height: '100%', overflowY: 'auto' }}>
+        <main className="col p-4 main-content" style={{ height: '100%', overflowY: 'auto', marginBottom: "10px" }}>
           <Outlet />
         </main>
       </div>
