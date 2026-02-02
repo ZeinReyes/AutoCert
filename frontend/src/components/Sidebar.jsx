@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) return savedTheme === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -10,22 +15,6 @@ export default function Sidebar() {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    const isDark =
-      savedTheme === "dark" || (!savedTheme && systemPrefersDark);
-
-    setDarkTheme(isDark);
-    document.documentElement.setAttribute(
-      "data-bs-theme",
-      isDark ? "dark" : "light"
-    );
   }, []);
 
   useEffect(() => {
@@ -77,7 +66,8 @@ export default function Sidebar() {
         }}
       >
         <div className="d-flex align-items-center justify-content-between mb-4">
-          <h4 className="mb-0 fw-bold ">AutoCert</h4>
+          <h4 className="mb-0 fw-bold">AutoCert</h4>
+
           {isMobile && (
             <button
               className="btn btn-sm btn-outline-secondary d-md-none"
