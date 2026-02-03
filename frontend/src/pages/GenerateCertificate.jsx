@@ -13,7 +13,7 @@ function GenerateCertificate() {
 
   const API_KEY = process.env.REACT_APP_API_KEY;
   const TEMPLATES_FOLDER_ID = process.env.REACT_APP_TEMPLATES_FOLDER_ID;
-  const N8N_WEBHOOK_URL = 'https://infinityw.com/webhook-test/generate-certificate';
+  const N8N_WEBHOOK_URL = 'https://infinityw.com/webhook/generate-certificate';
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 992);
