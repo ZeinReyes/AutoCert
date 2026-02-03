@@ -13,9 +13,8 @@ function GenerateCertificate() {
 
   const API_KEY = process.env.REACT_APP_API_KEY;
   const TEMPLATES_FOLDER_ID = process.env.REACT_APP_TEMPLATES_FOLDER_ID;
-  const BACKEND_PROXY_URL = process.env.REACT_APP_BACKEND_PROXY_URL;
+  const N8N_WEBHOOK_URL = 'https://infinityw.com/webhook-test/generate-certificate';
 
-  // Track window resize for mobile layout
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 992);
     window.addEventListener('resize', handleResize);
@@ -80,13 +79,16 @@ function GenerateCertificate() {
         timestamp: new Date().toISOString(),
       };
 
-      const res = await fetch(BACKEND_PROXY_URL, {
+      const res = await fetch(N8N_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error('Generation failed');
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`Generation failed: ${text}`);
+      }
 
       alert(`Certificate sent to ${formData.email}`);
       setFormData({
