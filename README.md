@@ -81,7 +81,7 @@ Every certificate request sends the following JSON to the webhook:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/AutoCert.git
+git clone https://github.com/ZeinReyes/AutoCert.git
 cd AutoCert
 ```
 
